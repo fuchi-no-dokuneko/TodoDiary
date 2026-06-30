@@ -42,12 +42,13 @@ jobs:
             signing_args+=("-PRELEASE_KEY_ALIAS=$ANDROID_KEY_ALIAS")
             signing_args+=("-PRELEASE_KEY_PASSWORD=$ANDROID_KEY_PASSWORD")
           fi
-          ./gradlew assembleRelease bundleRelease "${signing_args[@]}"
+          ./gradlew assembleDebug assembleRelease bundleRelease "${signing_args[@]}"
       - name: Upload release artifacts
         uses: actions/upload-artifact@v4
         with:
           name: tododiary-release
           path: |
+            app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*.apk
             app/build/outputs/bundle/release/*.aab
           if-no-files-found: error
@@ -56,5 +57,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
+            app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*.apk
             app/build/outputs/bundle/release/*.aab
