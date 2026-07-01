@@ -45,3 +45,7 @@ APK:
 ```text
 app/build/outputs/apk/debug/app-debug.apk
 ```
+
+## Credits
+
+See [CREDITS.md](CREDITS.md) for Android platform attribution.
